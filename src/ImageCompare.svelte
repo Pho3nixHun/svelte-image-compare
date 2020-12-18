@@ -1,12 +1,12 @@
 <svelte:window 
-	on:touchmove={move} 
-	on:touchend={end} 
-	on:mousemove={move} 
-	on:mouseup={end} 
-	on:resize={resize}
+	on:touchmove|passive={move} 
+	on:touchend|passive={end} 
+	on:mousemove|passive={move} 
+	on:mouseup|passive={end} 
+	on:resize|passive={resize}
 />
 
-<div class="container" {style} on:touchstart={start} on:mousedown={start}>
+<div class="container" {style} on:touchstart|passive={start} on:mousedown={start}>
 	<img 
 		bind:this={img} 
 		src={after} 
@@ -30,7 +30,7 @@
 	<div class="after-label" style="opacity:{opacity}">
 		<slot name="after"></slot>
 	</div>
-	<div class="handle" style="left: calc({offset * 100}% - 20px)">
+	<div class="handle" style="left: calc({offset * 100}% - 15px)">
 		<div class="arrow-left"></div>
 		<div class="arrow-right"></div>
 	</div>
@@ -81,7 +81,7 @@
 	.container {
 		overflow: hidden;
 		position: relative;
-		box-sizing: content-box;
+		box-sizing: border-box;
 	}
 	.container img {
 		top: 0;
@@ -145,13 +145,13 @@
 		border-bottom: 10px solid transparent;
 	}
 	.arrow-right {
-		left: 23px;
-		bottom: 10px;
+		left: 20px;
+		bottom: 15px;
 		border-left: 10px solid white;
 	}
 	.arrow-left {
-		left: 7px;
-		top: 10px;
+		left: 2px;
+		top: 5px;
 		border-right: 10px solid white;
 	}
 </style>
